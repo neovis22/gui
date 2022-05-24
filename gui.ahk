@@ -723,8 +723,7 @@ class __Gui__ {
         
         value[] {
             get {
-                ; 0x800 ; LBS_EXTENDEDSEL
-                if (DllCall("GetWindowLong", "ptr",this.hwnd, "int",-16) & 0x800)
+                if (this.style & 0x800) ; LBS_EXTENDEDSEL
                     return StrSplit(base.value, this.gui._delimiter)
                 else
                     return base.value
