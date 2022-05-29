@@ -33,6 +33,27 @@ RunWait git clone https://github.com/neovis22/gui.git Lib/gui
 - `guiFromHwnd(hwnd)`
 - `guiCtrlFromHwnd(hwnd)`
 
+## Examples
+`emit` 함수를 사용하여 이벤트를 추가하는 예제
+```ahk
+OnMessage(0x3, "WM_MOVE")
+
+WM_MOVE(wparam, lparam, msg, hwnd) {
+    if (gui := guiFromHwnd(hwnd))
+        NumPut(lparam, lparam, "uint")
+        , gui.emit("move", NumGet(lparam, 0, "short"), NumGet(lparam, 2, "short"))
+}
+
+myGui := gui()
+myGui.onEvent("move", "onMove")
+myGui.add("Text", "w300 h200 Center 0x200 #pos")
+myGui.show()
+
+onMove(gui, x, y) {
+    gui.pos.value := "Pos: " x ", " y
+}
+```
+
 ## Changelog
 #### 2022-05-14
 - Added: `edit.append(text)`
