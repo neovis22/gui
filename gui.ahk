@@ -825,7 +825,7 @@ class __Gui__ {
             return LV_GetNext(startingRowNumber, rowType)
         }
         
-        getText(rowNumber, colNumber="") {
+        getText(rowNumber, colNumber=1) {
             this.default()
             LV_GetText(text, rowNumber, colNumber)
             return text
