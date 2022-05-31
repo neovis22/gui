@@ -93,10 +93,10 @@ class __Gui__ {
             DllCall("SetWindowPos"
                 , "ptr",hwnd
                 , "ptr",0
-                , "int",gw*c._anchor.rx+c._anchor.x
-                , "int",gh*c._anchor.ry+c._anchor.y
-                , "int",gw*c._anchor.rw+c._anchor.w
-                , "int",gh*c._anchor.rh+c._anchor.h
+                , "int",(gw*c._anchor.rx+c._anchor.x)*a_screenDPI/96
+                , "int",(gh*c._anchor.ry+c._anchor.y)*a_screenDPI/96
+                , "int",(gw*c._anchor.rw+c._anchor.w)*a_screenDPI/96
+                , "int",(gh*c._anchor.rh+c._anchor.h)*a_screenDPI/96
                 , "uint",0x4) ; SWP_NOZORDER
             if (c._anchor.redraw)
                 ; RDW_UPDATENOW = 0x0100
@@ -234,7 +234,7 @@ class __Gui__ {
         Gui % this.hwnd ":Show", % options
         ; HACK: 쓰레드가 바쁜경우 간혹 사이즈 이벤트가 무시되는 경우가 발생하여 강제 실행으로 대처
         this.getClientPos(,, w, h)
-        _guiSize(this.hwnd, 0, w, h)
+        _guiSize(this.hwnd, 0, w*96/a_screenDPI, h*96/a_screenDPI)
         return this
     }
     
@@ -466,9 +466,7 @@ class __Gui__ {
         */
         anchor(rx=0, ry=0, rw=0, rh=0, redraw=false) {
             GuiControlGet p, Pos, % this.hwnd
-            this._anchor := {redraw:redraw
-                , x:px, y:py, w:pw, h:ph
-                , rx:rx, ry:ry, rw:rw, rh:rh}
+            this._anchor := {x:px, y:py, w:pw, h:ph, rx:rx, ry:ry, rw:rw, rh:rh, redraw:redraw}
             this.gui._anchoredControls[this.hwnd] := this
             return this
         }
