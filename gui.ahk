@@ -1094,8 +1094,6 @@ _guiEscape(hwnd) {
 }
 
 _guiEnqueueControlEvent(pctrl, hwnd, type, args*) {
-    ; 여러 이벤트가 빠르게 발생시 문제가 있음
-    ; Object(pctrl)._eventHandler(type, args*) ; 이벤트 즉시처리
     critical
     __Gui__._eventQueue.push({ctrl:Object(pctrl), type:type, args:args, tc:a_tickCount})
     SetTimer _guiControlEventHandler, -1
