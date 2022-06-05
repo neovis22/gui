@@ -637,11 +637,12 @@ class __Gui__ {
         static _v2events := {normal:"click"}
     }
     
-    class Checkbox extends __Gui__.Control {
+    class Checkbox extends __Gui__.Radio {
         
+        static _v2events := {normal:"click"}
     }
     
-    class Radio extends __Gui__.Checkbox {
+    class Radio extends __Gui__.Control {
         
         static _v2events := {normal:"click", doubleClick:"doubleClick"}
     }
