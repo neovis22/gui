@@ -684,6 +684,17 @@ class __Gui__ {
                     , "ptr",0)
             return this
         }
+        
+        value[] {
+            get {
+                ; CB_GETCURSEL 0x147
+                return DllCall("SendMessage", "ptr",this.hwnd, "uint",0x147, "uptr",0, "ptr",0)+1
+            }
+            set {
+                this.choose(value)
+                return value
+            }
+        }
     }
     
     class ListBox extends __Gui__.Control {
