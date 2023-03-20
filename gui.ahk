@@ -666,7 +666,7 @@ class __Gui__ {
         }
         
         choose(value) {
-            if value is Integer
+            if (ObjGetCapacity([value], 1) == "")
                 GuiControl Choose, % this.hwnd, % value
             else
                 GuiControl ChooseString, % this.hwnd, % value
@@ -712,7 +712,7 @@ class __Gui__ {
         }
         
         choose(value) {
-            if value is Integer
+            if (ObjGetCapacity([value], 1) == "")
                 GuiControl Choose, % this.hwnd, % value
             else
                 GuiControl ChooseString, % this.hwnd, % value
@@ -1015,7 +1015,7 @@ class __Gui__ {
         }
         
         choose(value) {
-            if value is Integer
+            if (ObjGetCapacity([value], 1) == "")
                 GuiControl Choose, % this.hwnd, % value
             else
                 GuiControl ChooseString, % this.hwnd, % value
